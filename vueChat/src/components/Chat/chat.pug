@@ -1,0 +1,17 @@
+.view
+  .chanel
+    ul
+      li(v-for="(channel) in channels") {{ channel }}
+      //- channelがエイリアス
+      router-link(:to="{name: 'channel', params: { cname: channel }}") {{ channel }}
+  .channel-name {{ $route.params.cname }}
+  //- {{ message }}を追加
+  .messages
+    ul
+      li(v-for="(mes) in messages")
+        .message {{ mes.body }}
+        .data {{ mes.data }}
+        .name {{ mes.user.name }}
+  .form
+    input(type="text" v-model="message")
+    input(type="button" value="SEND" "@click"="send_message")
